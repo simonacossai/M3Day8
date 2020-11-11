@@ -8,7 +8,7 @@
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/d/de/Amazon_icon.png" type="image/x-icon"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -19,18 +19,22 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-light">
         <div class="container">
-            <a class="navbar-brand mr-5" href="#">STRIVEZONE</a>
+            <a class="navbar-brand mr-5" href="index.html">STRIVEZONE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="backoffice.html">Backoffice</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="detail.html">Details <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" style="color:white!important">
@@ -44,25 +48,46 @@
             </div>
         </div>
     </nav>
-
-
-<div class="container" style="margin-top: 100px;">
-    <div class="row" id="productsContainer">
+    <div class="container text-center justify-content-center align-items-center mt-5">
+        <div class="row detailDiv">
+            
+        </div>
 
     </div>
-</div>
-
-
-
-
 
 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="index.js"></script>
     <script>
+        window.onload = async() => {
+            const urlParams = await new URLSearchParams(window.location.search)
+            const productId = urlParams.get('id')
+            let a = productId.split("|"); // which creates an array
+            let name = a[0];
+            let image = a[1];
+            let description = a[2];
+            let price = a[3];
+            let brand = a[4];
 
+            let container = document.querySelector(".row");
+            container.innerHTML += ` 
+            <div class="col-6 image-detail" >
+                <img src="${image}"/></div>
+            <div class="col-6 px-5">
+                <div class="d-flex justify-content-between " style="margin-top:100px;">
+            <span class="name-detail">${name}</span> <span class="brand-detail">${brand}</span>
+            </div>
+            <p class="mt-5 detail-description">${description}</p>
+            <p class="price-detail">$${price}</p>
+            <div class="d-flex justify-content-between mt-5">
+           <button style="border-radius:10px; width: 100px; height: 40px; border-color: #507DBC!important;" class="btn btn-primary">Buy now</button>
+            </div>
+         </div>
+`
+console.log(productId)
+console.log(name, description, price, brand);
+        }
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">

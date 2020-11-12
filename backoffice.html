@@ -91,12 +91,17 @@
                     </div>
                     <button class="btn btn-primary mt-4" type="submit">Submit</button>
                 </form>
+                <button class="btn btn-primary update mt-4" type="submit" onclick="updateProduct()">Update</button>
+                <button class="btn btn-primary delete mt-4" type="submit" onclick="handleDelete()">Delete</button>
             </div>
 
         </div>
         <div class="alert-div ">
             <div class="alert alert-success success text-center d-none" role="alert">
                 Product successfully added
+            </div>
+            <div class="alert alert-success updateAlert text-center d-none" role="alert">
+                Product successfully updated
             </div>
             <div class="alert alert-danger error text-center d-none" role="alert">
                 Something went wrong

@@ -18,7 +18,7 @@ async function getProducts() {
           "col-md-6",
           "col-sm-12");
         col.innerHTML = `
-            <a href="detail.html?id=${e._id}" style="text-decoration: none; color: #000;">
+          
             <div class="card mb-4 shadow-sm">
             <img src="${e.imageUrl}" height="250" style="object-fit: cover"/>
             <div class="card-body">
@@ -28,13 +28,13 @@ async function getProducts() {
               <p class="card-text description">${e.description}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>     
+                <a href="detail.html?id=${e._id}" style="text-decoration: none; color: #000;"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button></a> 
+                  <a href="backoffice.html?id=${e._id}"><button type="button" class="btn btn-sm btn-outline-secondary ml-2">Update</button></a>         
                 </div>
                 <small class="text-muted">$${e.price}</small>
               </div>
             </div>
           </div>
-          </a>
             `
         productContainer.appendChild(col);
       });

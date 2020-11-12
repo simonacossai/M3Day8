@@ -1,24 +1,24 @@
-async function getProducts(){
-const url =  "https://striveschool-api.herokuapp.com/api/product/";
-let productContainer = document.querySelector("#productsContainer");
+async function getProducts() {
+  const url = "https://striveschool-api.herokuapp.com/api/product/";
+  let productContainer = document.querySelector("#productsContainer");
 
-try{
-    let response = await fetch(url,{
-        method: "GET",
-        headers: new Headers({
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiZjgxNDRiY2RlMTAwMTc2MTZjNTMiLCJpYXQiOjE2MDUxMDU2ODQsImV4cCI6MTYwNjMxNTI4NH0.sLT4G9POgzHoQJlNWeazbWYraJSSX9-xSyGFdGetYq4"
-        }),
+  try {
+    let response = await fetch(url, {
+      method: "GET",
+      headers: new Headers({
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiZjgxNDRiY2RlMTAwMTc2MTZjNTMiLCJpYXQiOjE2MDUxMDU2ODQsImV4cCI6MTYwNjMxNTI4NH0.sLT4G9POgzHoQJlNWeazbWYraJSSX9-xSyGFdGetYq4"
+      }),
     });
     let products = await response.json();
 
-    if(products.length>0){
-        products.forEach(e => {
-            let col = document.createElement("div");
-            col.classList.add("col-lg-4",
-            "col-md-6",
-            "col-sm-12");
-            col.innerHTML = `
-            <a href="detail.html?id=${e.name}|${e.imageUrl}|${e.description}|${e.price}|${e.brand}" style="text-decoration: none; color: #000;">
+    if (products.length > 0) {
+      products.forEach(e => {
+        let col = document.createElement("div");
+        col.classList.add("col-lg-4",
+          "col-md-6",
+          "col-sm-12");
+        col.innerHTML = `
+            <a href="detail.html?id=${e._id}" style="text-decoration: none; color: #000;">
             <div class="card mb-4 shadow-sm">
             <img src="${e.imageUrl}" height="250" style="object-fit: cover"/>
             <div class="card-body">
@@ -36,15 +36,15 @@ try{
           </div>
           </a>
             `
-            productContainer.appendChild(col);
-        });
-    }else{
-        productContainer.innerHTML= "<h1>No product in the store at the moment</h1>"
+        productContainer.appendChild(col);
+      });
+    } else {
+      productContainer.innerHTML = "<h1>No product in the store at the moment</h1>"
     }
 
 
-    }catch(e){
-        alert(e);
-    }
-    }
+  } catch (e) {
+    alert(e);
+  }
+}
 getProducts();
